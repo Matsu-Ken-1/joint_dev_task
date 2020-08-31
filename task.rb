@@ -146,9 +146,10 @@ def q16
   ]
 
   # 以下に回答を記載
-  users.each.with_index do |(name, age), i|
-    puts "私の名前は#{users[i][:name]}です。年齢は#{users[i][:age]}歳です。"
-  end
+  # users.each.with_index do |(name, age), i|
+  #   puts "私の名前は#{users[i][:name]}です。年齢は#{users[i][:age]}歳です。"
+  # end
+  users.each.with_index {|(name, age), i| puts "私の名前は#{users[i][:name]}です。年齢は#{users[i][:age]}歳です。"}
 end
 
 class UserQ17
