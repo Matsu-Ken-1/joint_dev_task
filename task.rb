@@ -149,7 +149,8 @@ def q16
   # users.each.with_index do |(name, age), i|
   #   puts "私の名前は#{users[i][:name]}です。年齢は#{users[i][:age]}歳です。"
   # end
-  users.each.with_index {|(name, age), i| puts "私の名前は#{users[i][:name]}です。年齢は#{users[i][:age]}歳です。"}
+  # users.each.with_index {|(name, age), i| puts "私の名前は#{users[i][:name]}です。年齢は#{users[i][:age]}歳です。"}
+  users.each {|user| puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です。"}
 end
 
 class UserQ17
