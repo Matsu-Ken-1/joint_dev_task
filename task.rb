@@ -156,12 +156,21 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  attr_reader :name, :age, :gender
-  def initialize(**info)
-    @name = info[:name]
-    @age = info[:age]
-    @gender = info[:gender]
+
+  def initialize(name:, age:, gender:)
+    @name = name
+    @age = age
+    @gender = gender
   end
+
+  def info
+    puts <<~TEXT
+    名前：#{@name}
+    年齢：#{@age}
+    性別：#{@gender}
+    TEXT
+  end
+
 end
 
 def q17
@@ -169,27 +178,21 @@ def q17
   user1 = UserQ17.new(name: "神里", age: 32, gender: "男")
   user2 = UserQ17.new(name: "あじー", age: 32, gender: "男")
 
-  # user1.info
-  # puts "-------------"
-  # user2.info
-  puts <<~TEXT
-  名前：#{user1.name}
-  年齢：#{user1.age}
-  性別：#{user1.gender}
-  -------------
-  名前：#{user2.name}
-  年齢：#{user2.age}
-  性別：#{user2.gender}
-  TEXT
+  user1.info
+  puts "-------------"
+  user2.info
 end
 
 class UserQ18
   # 以下に回答を記載
-  attr_reader :age
-  attr_accessor :name
-  def initialize(**introduce)
-    @name = introduce[:name]
-    @age = introduce[:age]
+
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
+
+  def introduce
+    print @age >= 30 ? "こんにちは，#{@name}と申します。宜しくお願いいたします。" : "はいさいまいど〜，#{@name}です！！！"
   end
 end
 
@@ -198,15 +201,12 @@ def q18
   user1 = UserQ18.new(name: "あじー", age: 32)
   user2 = UserQ18.new(name: "ゆたぼん", age: 10)
 
-  # puts user1.introduce
-  # puts user2.introduce
-  puts user1.age >= 30 ? "こんにちは，#{user1.name}と申します。宜しくお願いいたします。" : "はいさいまいど〜，#{user1.name}です！！！"
-  puts user2.age >= 30 ? "こんにちは，#{user2.name}と申します。宜しくお願いいたします。" : "はいさいまいど〜，#{user2.name}です！！！"
+  puts user1.introduce
+  puts user2.introduce
 end
 
 class Item
   # 以下を修正して下さい
-
   def initialize(name)
     @name = name
   end
