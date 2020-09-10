@@ -207,7 +207,8 @@ end
 
 class Item
   # 以下を修正して下さい
-  def initialize(name)
+  attr_accessor :name
+  def initialize(name:)
     @name = name
   end
 end
@@ -220,11 +221,32 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  attr_accessor :name, :age
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+  end
 
 end
 
 class Zoo
   # 以下に回答を記載
+  attr_accessor :name, :entry_fee
+  def initialize(**params)
+    @name = params[:name]
+    @entry_fee = params[:entry_fee]
+  end
+  def info_entry_fee(user)
+    if user.age >= 0 && user.age <= 5 then
+      puts "#{user.name}さんの入場料金は #{entry_fee[:infant]} 円です。"
+    elsif user.age >= 6 && user.age <= 12 then
+      puts "#{user.name}さんの入場料金は #{entry_fee[:children]} 円です。"
+    elsif user.age >= 13 && user.age <= 64 then
+      puts "#{user.name}さんの入場料金は #{entry_fee[:adult]} 円です。"
+    elsif user.age >= 65 && user.age <= 120 then
+      puts "#{user.name}さんの入場料金は #{entry_fee[:senior]} 円です。"
+    end
+  end
 
 end
 
