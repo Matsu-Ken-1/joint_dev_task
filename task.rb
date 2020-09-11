@@ -221,35 +221,49 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name, :age
+  attr_reader :name, :age
   def initialize(**params)
     @name = params[:name]
     @age = params[:age]
   end
-
 end
 
 class Zoo
   # 以下に回答を記載
-  attr_accessor :name, :entry_fee
-  def initialize(**params)
-    @name = params[:name]
-    @entry_fee = params[:entry_fee]
+  def initialize(name:, entry_fee:)
+    @name = name
+    @entry_fee = entry_fee
   end
+
   def info_entry_fee(user)
-    if user.age >= 0 && user.age <= 5 then
-      puts "#{user.name}さんの入場料金は #{entry_fee[:infant]} 円です。"
-    elsif user.age >= 6 && user.age <= 12 then
-      puts "#{user.name}さんの入場料金は #{entry_fee[:children]} 円です。"
-    elsif user.age >= 13 && user.age <= 64 then
-      puts "#{user.name}さんの入場料金は #{entry_fee[:adult]} 円です。"
-    elsif user.age >= 65 && user.age <= 120 then
-      puts "#{user.name}さんの入場料金は #{entry_fee[:senior]} 円です。"
+
+    # 入場料金の設定
+    # 幼児(0〜5歳) 0円
+    @infant = @entry_fee[:infant]
+    # 子供(6〜12歳) 400円
+    @children = @entry_fee[:children]
+    # 成人(13〜64歳) 800円
+    @adult = @entry_fee[:adult]
+    # シニア(65〜120歳) 500円
+    @senior = @entry_fee[:senior]
+
+    # 入場料金の判定
+    case user.age
+    # 幼児(0〜5歳) 0円
+    when 0..5
+      puts "#{user.name}さんの入場料金は #{@infant} 円です。"
+    # 子供(6〜12歳) 400円
+    when 6..12
+      puts "#{user.name}さんの入場料金は #{@children} 円です。"
+    when 13..64
+    # 成人(13〜64歳) 800円
+      puts "#{user.name}さんの入場料金は #{@adult} 円です。"
+    # シニア(65〜120歳) 500円
+    when 65..120
+      puts "#{user.name}さんの入場料金は #{@senior} 円です。"
     end
   end
-
 end
-
 
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
