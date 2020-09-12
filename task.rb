@@ -236,7 +236,6 @@ class Zoo
   end
 
   def info_entry_fee(user)
-
     # 入場料金の設定
     # 幼児(0〜5歳) 0円
     @infant = @entry_fee[:infant]
@@ -248,20 +247,39 @@ class Zoo
     @senior = @entry_fee[:senior]
 
     # 入場料金の判定
+    # case user.age
+    # # 幼児(0〜5歳) 0円
+    # when 0..5
+    #   puts "#{user.name}さんの入場料金は #{@infant} 円です。"
+    # # 子供(6〜12歳) 400円
+    # when 6..12
+    #   puts "#{user.name}さんの入場料金は #{@children} 円です。"
+    # when 13..64
+    # # 成人(13〜64歳) 800円
+    #   puts "#{user.name}さんの入場料金は #{@adult} 円です。"
+    # # シニア(65〜120歳) 500円
+    # when 65..120
+    #   puts "#{user.name}さんの入場料金は #{@senior} 円です。"
+    # end
+
+    #料金を配列に格納
+    fee = Array.new
     case user.age
-    # 幼児(0〜5歳) 0円
-    when 0..5
-      puts "#{user.name}さんの入場料金は #{@infant} 円です。"
-    # 子供(6〜12歳) 400円
-    when 6..12
-      puts "#{user.name}さんの入場料金は #{@children} 円です。"
-    when 13..64
-    # 成人(13〜64歳) 800円
-      puts "#{user.name}さんの入場料金は #{@adult} 円です。"
-    # シニア(65〜120歳) 500円
-    when 65..120
-      puts "#{user.name}さんの入場料金は #{@senior} 円です。"
+      # 幼児(0〜5歳) 0円
+      when 0..5
+        fee.push("#{user.name}さんの入場料金は #{@infant} 円です。")
+      when 6..12
+        fee.push("#{user.name}さんの入場料金は #{@children} 円です。")
+      when 13..64
+        # 成人(13〜64歳) 800円
+        fee.push("#{user.name}さんの入場料金は #{@adult} 円です。")
+      # シニア(65〜120歳) 500円
+      when 65..120
+        fee.push("#{user.name}さんの入場料金は #{@senior} 円です。")
     end
+
+    # 料金表示
+    puts fee
   end
 end
 
